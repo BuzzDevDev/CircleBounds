@@ -1,0 +1,35 @@
+{
+  "name": "circlebounds",
+  "version": "1.0.0",
+  "description": "Real time group chats with other people!",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BuzzDevDev/CircleBounds.git"
+  },
+  "keywords": [
+    "Group",
+    "Chat",
+    "Group",
+    "Chat",
+    "Realtime",
+    "Realtime",
+    "Chat"
+  ],
+  "author": "Bleart Emini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BuzzDevDev/CircleBounds/issues"
+  },
+  "homepage": "https://github.com/BuzzDevDev/CircleBounds#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "socket.io": "^3.1.1"
+  }
+}
