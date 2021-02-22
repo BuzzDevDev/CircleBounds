@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const fs = require('fs');
+var rooms = [];
 
 var port = process.env.PORT || 8080;
 
@@ -23,18 +24,49 @@ io.on('connection', socket => {
     socket.on("disconnect", () => {
         console.log("User disconnected from world.");
         io.to(theirRoom).emit("botMessage", {msg: username, type: "left"});
+        rooms.forEach(room => {
+            if(theirRoom == room.id) {
+                var index = room.sockets.indexOf(socket.id);
+                room.sockets.splice(index, 1);
+                if(room.sockets.length <= 0) {
+                    var ind = rooms.indexOf({id: theirRoom});
+                    rooms.splice(ind, 1);
+                };
+            };
+        });
     });
 
     socket.on("joinRoom", (msg) => {
         socket.join(msg.room);
+        rooms.forEach(room => {
+            if(room.id == msg.room) {
+                room.sockets.push(socket.id);
+                return;
+            };
+        });
         theirRoom = msg.room;
         username = msg.user;
         io.to(msg.room).emit("botMessage", {msg: username, type: "joined"});
     });
 
+    socket.on("createRoom", (msg) => {
+        var obj = {
+            id: msg,
+            sockets: []
+        };
+        rooms.push(obj);
+        socket.emit("redirect", msg);
+        obj.sockets.push(socket.id);
+        obj.sockets.splice(0, 1);
+    });
+
     socket.on("message", (obj) => {
         obj.user = username;
         io.to(obj.room).emit("newMessage", obj);
+    });
+
+    socket.on("getRooms", () => {
+        socket.emit("rooms", rooms);
     });
 });
 
@@ -42,7 +74,17 @@ app.get("/:chat", (req, res) => {
     var chat = req.params.chat;
     var file = fs.readFileSync("./public/pages/chat.html", "utf-8");
 
-    res.send(file);
+    rooms.forEach(room => {
+        if(room.id == chat) {
+            console.log("room found");
+            res.send(file);
+            return;
+        }else{
+            console.log("room not found");
+            res.send("Room not found!");
+        };
+    });
+    
     res.end();
 });
 
