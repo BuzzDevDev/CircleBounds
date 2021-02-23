@@ -1,4 +1,5 @@
 const socket = io();
+var theirMessages = [];
 var chatHolder = document.getElementById("chatHolder");
 var shownMessages = chatHolder.childElementCount;
 
@@ -48,7 +49,12 @@ function sendMessage() {
     obj.room = obj.room.replace("/", "")
     socket.emit("message", obj);
     msg.value = "";
-    msg.focus();
+    msg.disabled = true;
+    setTimeout(() => {
+        msg.disabled = false;
+        msg.focus();
+    }, 1250);
+    
 };
 
 

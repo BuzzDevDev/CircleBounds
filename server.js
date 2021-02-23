@@ -74,16 +74,14 @@ app.get("/:chat", (req, res) => {
     var chat = req.params.chat;
     var file = fs.readFileSync("./public/pages/chat.html", "utf-8");
 
-    rooms.forEach(room => {
-        if(room.id == chat) {
+    for (let i = 0; i < rooms.length; i++) {
+        if(rooms[i].id == chat) {
             console.log("room found");
             res.send(file);
-            return;
-        }else{
-            console.log("room not found");
-            res.send("Room not found!");
+            res.end();
+            break;
         };
-    });
+    };
     
     res.end();
 });

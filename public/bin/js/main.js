@@ -9,6 +9,8 @@ socket.on("redirect", msg => {
 });
 
 function createRoom() {
-    var room = window.prompt("What would you like to name your room?");
+    var x = Math.floor(Math.random() * ((ctx.canvas.width - 175) - 50 + 1) + 50);
+    var y = Math.floor(Math.random() * ((ctx.canvas.height - 175) - 50 + 1) + 50);
+    var room = `${x}-${y}`;
     socket.emit("createRoom", room);
 };

@@ -56,3 +56,27 @@ document.addEventListener("keyup", (e) => {
         
     };
 });
+
+
+
+// detecting click events on rooms
+/*
+
+var elem = document.getElementById('myCanvas'),
+    elemLeft = elem.offsetLeft + elem.clientLeft,
+    elemTop = elem.offsetTop + elem.clientTop,
+    context = elem.getContext('2d')
+
+elem.addEventListener('click', function(event) {
+    var x = event.pageX - elemLeft,
+        y = event.pageY - elemTop;
+
+    visualRooms.forEach((element) => {
+        if (y > element.y && y < element.y + 100 && x > element.x && x < element.x + 100) {
+            alert('clicked an element');
+        };
+    });
+
+}, false);
+
+*/
