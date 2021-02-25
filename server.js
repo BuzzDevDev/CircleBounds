@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const fs = require('fs');
+const xss = require('xss');
 var rooms = [];
 
 var port = process.env.PORT || 8080;
@@ -62,6 +63,8 @@ io.on('connection', socket => {
 
     socket.on("message", (obj) => {
         obj.user = username;
+        obj.user = xss(obj.user);
+        obj.msg = xss(obj.msg);
         io.to(obj.room).emit("newMessage", obj);
     });
 
