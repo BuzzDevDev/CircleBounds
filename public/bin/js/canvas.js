@@ -36,13 +36,14 @@ class component {
      * @description Creates a circle based on values.
      */
 
-    constructor(x, y, r, shape, w, h) {
+    constructor(x, y, r, shape, w, h, count) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.w = w || 15;
         this.h  = h || 15;
         this.shape = shape || "Circle";
+        this.count = count || null;
         this.color = "#" + Math.floor(Math.random()*16777215).toString(16);
 
         this.draw = () => {
@@ -57,6 +58,11 @@ class component {
                 // creates rect
                 ctx.fillStyle = this.color;
                 ctx.fillRect(this.x, this.y, this.w, this.h);
+                // creates text
+                ctx.font = "30px Comic Sans MS";
+                ctx.fillStyle = "#" + invertHex(this.color.replace("#", ""));
+                ctx.textAlign = "center";
+                ctx.fillText(this.count, this.x, this.y);
             };
             
 
@@ -94,10 +100,56 @@ function init() {
 
         for (let i = 0; i < rooms.length; i++) {
             var result = rooms[i].id.split("-");
+            var users = rooms[i].sockets.length;
 
             var x = result[0];
             var y = result[1];
-            visualRooms.push(new component(x, y, 0, rooms[i].id, 175, 145));
+            var width;
+            var height;
+            switch(users) {
+                case 1:
+                    width = 175;
+                    height = 145;
+                break;
+                case 2:
+                    width = 200;
+                    height = 160;
+                break;
+                case 3:
+                    width = 215;
+                    height = 175;
+                break;
+                case 4:
+                    width = 230;
+                    height = 200;
+                break;
+                case 5:
+                    width = 245;
+                    height = 215;
+                break;
+                case 6:
+                    width = 260;
+                    height = 230;
+                break;
+                case 7:
+                    width = 275;
+                    height = 245;
+                break;
+                case 8:
+                    width = 300;
+                    height = 230;
+                break;
+                case 9:
+                    width = 315;
+                    height = 245;
+                break;
+                
+                default:
+                    width = 330;
+                    height = 260;
+                break;
+            };
+            visualRooms.push(new component(x, y, 0, rooms[i].id, width, height, users.toString()));
             console.log("pushed visual room");
             
         };
@@ -124,8 +176,8 @@ function loop() {
     
     visualRooms.forEach(room => {
         if(crashWith(myPlayer, room)) {
-            location.href += room.shape;
             cancelAnimationFrame(myLoop);
+            location.href += room.shape;
             return;
         };
     });

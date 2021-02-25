@@ -76,7 +76,6 @@ app.get("/:chat", (req, res) => {
 
     for (let i = 0; i < rooms.length; i++) {
         if(rooms[i].id == chat) {
-            console.log("room found");
             res.send(file);
             res.end();
             break;
