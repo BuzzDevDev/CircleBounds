@@ -2,7 +2,7 @@ const socket = io();
 var theirMessages = [];
 var chatHolder = document.getElementById("chatHolder");
 var shownMessages = chatHolder.childElementCount;
-
+var msg = document.getElementById("text-box");
 
 socket.on('Console', msg => {
     console.log(msg);
@@ -41,7 +41,6 @@ function message(obj) {
 };
 
 function sendMessage() {
-    var msg = document.getElementById("text-box");
     var obj = {
         msg: msg.value,
         room: window.location.pathname
@@ -49,11 +48,21 @@ function sendMessage() {
     obj.room = obj.room.replace("/", "")
     socket.emit("message", obj);
     msg.value = "";
+    
+    // cooldown
     msg.disabled = true;
+    let num = 3;
+    msg.placeholder = num;
+    let int = setInterval(() => {
+        num -= 1;
+        msg.placeholder = num;
+    }, 500);
     setTimeout(() => {
+        clearInterval(int);
+        msg.placeholder = "Click to chat";
         msg.disabled = false;
         msg.focus();
-    }, 1250);
+    }, 1500);
     
 };
 
@@ -73,6 +82,7 @@ function joinRoom() {
     };
     socket.emit("joinRoom", obj);
     console.log(`Joined room: ${myRoom}`);
+    msg.focus();
 };
 
 socket.on("botMessage", (obj) => {
