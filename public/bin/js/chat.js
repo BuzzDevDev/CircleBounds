@@ -48,7 +48,7 @@ function sendMessage() {
     obj.room = obj.room.replace("/", "")
     socket.emit("message", obj);
     msg.value = "";
-    
+
     // cooldown
     msg.disabled = true;
     let num = 3;
@@ -88,3 +88,21 @@ function joinRoom() {
 socket.on("botMessage", (obj) => {
     message(obj);
 });
+
+
+// set emojiIMG button to be at the same position as input msg
+setInterval(() => {
+    if($(msg).is(':focus')) {
+        document.getElementById("emojiIMG").style.bottom = "9.5%"
+        document.getElementById("gifIMG").style.bottom = "9.5%"
+    };
+    if(!$(msg).is(':focus')) {
+        document.getElementById("emojiIMG").style.bottom = "4%"
+        document.getElementById("gifIMG").style.bottom = "4%"
+    };
+    if($(msg).is(':hover') && !$(msg).is(":focus")) {
+        document.getElementById("emojiIMG").style.bottom = "6%"
+        document.getElementById("gifIMG").style.bottom = "6%"
+    };
+
+}, 100);
