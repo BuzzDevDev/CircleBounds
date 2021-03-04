@@ -3,6 +3,7 @@ var theirMessages = [];
 var chatHolder = document.getElementById("chatHolder");
 var shownMessages = chatHolder.childElementCount;
 var msg = document.getElementById("text-box");
+var oncooldown = false;
 
 socket.on('Console', msg => {
     console.log(msg);
@@ -14,7 +15,7 @@ socket.on("newMessage", msg => {
 
 function message(obj) {
     shownMessages++
-    if(shownMessages > 7) {
+    if(shownMessages > 4) {
         console.log("removed top message")
         chatHolder.firstElementChild.className = "chatMessageSlide";
 
@@ -50,6 +51,7 @@ function sendMessage() {
     msg.value = "";
 
     // cooldown
+    oncooldown = true;
     msg.disabled = true;
     let num = 3;
     msg.placeholder = num;
@@ -61,6 +63,7 @@ function sendMessage() {
         clearInterval(int);
         msg.placeholder = "Click to chat";
         msg.disabled = false;
+        oncooldown = false;
         msg.focus();
     }, 1500);
     

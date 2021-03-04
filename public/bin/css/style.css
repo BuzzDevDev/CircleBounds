@@ -2,6 +2,10 @@
 
 :root {
     --bg: rgb(83, 106, 136);
+    --other: rgb(214, 216, 235);
+    --medium-champagne: #dfd5a5ff;
+    --earth-yellow: #dbad6aff;
+    --menu: rgb(35, 36, 43);
 }
 
 html, body {
@@ -143,24 +147,6 @@ canvas {
     color: #919191;
 }
 
-.emojiIMG {
-    outline: none;
-    position: absolute;
-    bottom: 4%;
-    right: 5%;
-    transition-duration: 0.45s;
-    z-index: 3;
-}
-
-.gifIMG {
-    outline: none;
-    position: absolute;
-    bottom: 4%;
-    right: 10%;
-    transition-duration: 0.45s;
-    z-index: 3;
-}
-
 
 .selectBTN {
     outline: none;
@@ -188,4 +174,97 @@ canvas {
     background: none;
     border: solid white 1.5px;
     transition-duration: 0.25s;
+}
+
+.emojiIMG {
+    outline: none;
+    position: absolute;
+    bottom: 4%;
+    right: 5%;
+    transition-duration: 0.45s;
+    z-index: 3;
+}
+
+.gifIMG {
+    outline: none;
+    position: absolute;
+    bottom: 4%;
+    right: 10%;
+    transition-duration: 0.45s;
+    z-index: 3;
+}
+
+.emojiMenu {
+    position: absolute;
+    width: 15%;
+    height: 27%;
+    background-color: var(--menu);
+    z-index: 10;
+    border: white 1px solid;
+    overflow-y: auto;
+    overflow-x: none;
+    bottom: 6%;
+    right: 7%;
+}
+
+.gifMenu {
+    position: absolute;
+    width: 15%;
+    height: 27%;
+    background-color: var(--menu);
+    z-index: 10;
+    border: white 1px solid;
+    overflow-y: auto;
+    overflow-x: none;
+    bottom: 6%;
+    right: 12%;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+/* Table Styles */
+
+table, td, th {  
+    border: none;
+    text-align: center;
+}
+  
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+}
+  
+th, td {
+    padding: 15px;
+    width: 25%;
+}
+
+
+
+/* Scroll bar styles */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(59, 59, 59); 
+    border-radius: 10px;
+}
+   
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(71, 71, 85); 
+    border-radius: 10px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(53, 53, 63); 
 }
