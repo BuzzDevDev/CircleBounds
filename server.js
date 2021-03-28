@@ -4,6 +4,12 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const fs = require('fs');
 const xss = require('xss');
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 50,
+    message: "You have joined/created too many rooms in 5 minutes. Try again in one hour."
+});
 var rooms = [];
 
 var port = process.env.PORT || 8080;
@@ -82,7 +88,7 @@ io.on('connection', socket => {
 
 // req a chat room
 
-app.get("/:chat", (req, res) => {
+app.get("/:chat", limiter, (req, res) => {
     var chat = req.params.chat;
     var file = fs.readFileSync("./public/pages/chat.html", "utf-8");
 

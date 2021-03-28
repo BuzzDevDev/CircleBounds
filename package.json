@@ -28,6 +28,7 @@
   "homepage": "https://github.com/BuzzDevDev/CircleBounds#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "socket.io": "^4.0.0",
