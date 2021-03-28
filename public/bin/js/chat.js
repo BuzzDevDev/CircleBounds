@@ -115,17 +115,14 @@ setInterval(() => {
     if($(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "8%"
         document.getElementById("gifIMG").style.bottom = "8%"
-        document.getElementById("minigameIMG").style.bottom = "8%"
     };
     if(!$(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "3%"
         document.getElementById("gifIMG").style.bottom = "3%"
-        document.getElementById("minigameIMG").style.bottom = "3%"
     };
     if($(msg).is(':hover') && !$(msg).is(":focus")) {
         document.getElementById("emojiIMG").style.bottom = "5%"
         document.getElementById("gifIMG").style.bottom = "5%"
-        document.getElementById("minigameIMG").style.bottom = "5%"
     };
 
 }, 100);
