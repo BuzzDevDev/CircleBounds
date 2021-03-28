@@ -177,6 +177,7 @@ canvas {
 }
 
 .emojiIMG {
+    padding: 2%;
     outline: none;
     position: absolute;
     bottom: 4%;
@@ -186,6 +187,7 @@ canvas {
 }
 
 .gifIMG {
+    padding: 2%;
     outline: none;
     position: absolute;
     bottom: 4%;
@@ -194,17 +196,36 @@ canvas {
     z-index: 3;
 }
 
+.minigameIMG {
+    padding: 2%;
+    outline: none;
+    position: absolute;
+    bottom: 4%;
+    right: 15%;
+    transition-duration: 0.45s;
+    z-index: 3;
+}
+
+.other {
+    position: absolute;
+    width: 20%;
+    height: 15%;
+    bottom: 0%;
+    right: 0%;
+    z-index: 10;
+}
+
 .emojiMenu {
     position: absolute;
     width: 15%;
     height: 27%;
     background-color: var(--menu);
-    z-index: 10;
+    z-index: 11;
     border: white 1px solid;
     overflow-y: auto;
     overflow-x: none;
-    bottom: 6%;
-    right: 7%;
+    bottom: 10%;
+    right: 8.5%;
 }
 
 .gifMenu {
@@ -212,12 +233,25 @@ canvas {
     width: 15%;
     height: 27%;
     background-color: var(--menu);
-    z-index: 10;
+    z-index: 11;
     border: white 1px solid;
     overflow-y: auto;
     overflow-x: none;
-    bottom: 6%;
-    right: 12%;
+    bottom: 10%;
+    right: 14.5%;
+}
+
+.gameMenu {
+    position: absolute;
+    width: 15%;
+    height: 27%;
+    background-color: var(--menu);
+    z-index: 11;
+    border: white 1px solid;
+    overflow-y: auto;
+    overflow-x: none;
+    bottom: 10%;
+    right: 19.5%;
 }
 
 .hidden {

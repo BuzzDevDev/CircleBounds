@@ -65,13 +65,22 @@ io.on('connection', socket => {
         obj.user = username;
         obj.user = xss(obj.user);
         obj.msg = xss(obj.msg);
-        io.to(obj.room).emit("newMessage", obj);
+
+        // check for empty message
+        if(obj.msg.trim() === "") {
+            
+        }else{
+            io.to(obj.room).emit("newMessage", obj);
+        };
+        
     });
 
     socket.on("getRooms", () => {
         socket.emit("rooms", rooms);
     });
 });
+
+// req a chat room
 
 app.get("/:chat", (req, res) => {
     var chat = req.params.chat;

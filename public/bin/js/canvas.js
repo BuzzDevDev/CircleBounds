@@ -25,6 +25,22 @@ var crashWith = (circle, rect) => {
     return (dx*dx+dy*dy<=(circle.r*circle.r));
 };
 
+var positions = [];
+var motionTrailLength = 35;
+
+
+function storeLastPosition(xPos, yPos) {
+    positions.push({
+      x: xPos,
+      y: yPos
+    });
+   
+    
+    if(positions.length > motionTrailLength) {
+      positions.shift();
+    };
+};
+
 class component {
 
     /**
@@ -45,24 +61,33 @@ class component {
         this.shape = shape || "Circle";
         this.count = count || null;
         this.color = "#" + Math.floor(Math.random()*16777215).toString(16);
+        if(!isHexColor(this.color)) {
+            this.color = "#" + Math.floor(Math.random()*16777215).toString(16);
+        };
 
         this.draw = () => {
+            // draw trail
+            for (var i = 0; i < positions.length; i++) {
+                var ratio = (i + 1) / positions.length;
+                ctx.beginPath();
+                ctx.arc(positions[i].x, positions[i].y, 7, 0, 2 * Math.PI, true);
+                ctx.fillStyle = `rgba(${hexToRgb(this.color).r}, ${hexToRgb(this.color).g}, ${hexToRgb(this.color).b}, ${ratio / 2})`;
+                ctx.fill();
+            }
+
             if(this.shape == "Circle") {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
                 ctx.fillStyle = this.color;
                 ctx.fill();
-                ctx.strokeStyle = "white";
+                ctx.lineWidth = 6;
+                ctx.strokeStyle = shadeColor(this.color, -60);
                 ctx.stroke();
+                storeLastPosition(this.x, this.y);
             }else{
                 // creates rect
                 ctx.fillStyle = this.color;
                 ctx.fillRect(this.x, this.y, this.w, this.h);
-                // creates text
-                ctx.font = "30px Comic Sans MS";
-                ctx.fillStyle = "#" + invertHex(this.color.replace("#", ""));
-                ctx.textAlign = "center";
-                ctx.fillText(this.count, this.x, this.y);
             };
             
 
