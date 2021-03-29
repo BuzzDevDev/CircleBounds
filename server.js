@@ -5,10 +5,11 @@ const io = require('socket.io')(server);
 const fs = require('fs');
 const xss = require('xss');
 const rateLimit = require("express-rate-limit");
+const isDuplicate = require("./utils/duplicate");
 const limiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 50,
-    message: "You have joined/created too many rooms in 5 minutes. Try again in one hour."
+    max: 150,
+    message: "You have joined/created too many rooms in 5 minutes. Try again in one hour.",
 });
 var rooms = [];
 
@@ -35,6 +36,8 @@ io.on('connection', socket => {
             if(theirRoom == room.id) {
                 var index = room.sockets.indexOf(socket.id);
                 room.sockets.splice(index, 1);
+                index = room.usernames.indexOf(username);
+                room.usernames.splice(index, 1);
                 if(room.sockets.length <= 0) {
                     var ind = rooms.indexOf({id: theirRoom});
                     rooms.splice(ind, 1);
@@ -48,6 +51,13 @@ io.on('connection', socket => {
         rooms.forEach(room => {
             if(room.id == msg.room) {
                 room.sockets.push(socket.id);
+                room.usernames.push(msg.user);
+                // check if name is duplicate
+                // does not work for now
+                if(isDuplicate(room.usernames)) {
+                    room.usernames.pop();
+                    socket.emit("dupe-user", `${msg.user}-${Math.floor(Math.random() * (10000 - 1 + 1) + 1)}`);
+                };
                 return;
             };
         });
@@ -59,7 +69,8 @@ io.on('connection', socket => {
     socket.on("createRoom", (msg) => {
         var obj = {
             id: msg,
-            sockets: []
+            sockets: [],
+            usernames: []
         };
         rooms.push(obj);
         socket.emit("redirect", msg);

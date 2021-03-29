@@ -6,10 +6,6 @@ function showGif() {
     document.querySelector(".gifMenu").classList.toggle("hidden")
 };
 
-function showGame() {
-    document.querySelector(".gameMenu").classList.toggle("hidden")
-};
-
 function emojiSelect(e, emoji) {
     if (!e) var e = window.event;                // Get the window event
     e.cancelBubble = true;                       // IE Stop propagation
@@ -22,22 +18,16 @@ function emojiSelect(e, emoji) {
 };
 
 function gifSelect(e, gif) {
+    // get gif img element
+    var title = $(gif).attr("title");
+    // add a whitespace at end of title
+    title += " ";
+
     if (!e) var e = window.event;                // Get the window event
     e.cancelBubble = true;                       // IE Stop propagation
     if (e.stopPropagation) e.stopPropagation();  // Other Broswers
     if(oncooldown == false) {
-        msg.value += gif;
-        console.log(`Gif Selected: ${gif}`);
+        msg.value += title;
     };
     
-};
-
-function gameSelect(e, game) {
-    if (!e) var e = window.event;                // Get the window event
-    e.cancelBubble = true;                       // IE Stop propagation
-    if (e.stopPropagation) e.stopPropagation();  // Other Broswers
-    if(oncooldown == false) {
-        msg.value += game;
-        console.log(`Gif Selected: ${game}`);
-    };
 };

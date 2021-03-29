@@ -121,6 +121,10 @@ function init() {
         rooms = msg;
         console.log(rooms);
 
+        // set room counter
+
+        document.getElementById("roomCount").innerHTML = `Rooms: ${rooms.length}`
+
         // make rooms
 
         for (let i = 0; i < rooms.length; i++) {

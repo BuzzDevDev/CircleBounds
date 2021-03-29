@@ -16,3 +16,29 @@
 * Changed speed of message slide animation
 * Fixed version in package.json 
 * Changed Security.md
+
+
+### v1.1.0
+
+* Gif Changes
+
+* * Made non draggable
+* * Made constant size
+* * Made gif name parser
+* * * Ex: amused corrects to the gif
+
+* Chat Changes
+
+* * Added leave room button
+* * Added max character count
+* * Added input title hover
+
+* Home Page Changes
+
+* * Added room count
+* * Added mobile touch controls
+
+* Backend
+
+* * Added user management array
+* * Added duplicate string util

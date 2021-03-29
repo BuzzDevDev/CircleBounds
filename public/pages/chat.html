@@ -13,6 +13,7 @@
 </head>
 <body onload="joinRoom()">
     <h1 class="header">CircleBounds</h1>
+    <button class="selectBTN" style="position: absolute; top: 0; left: 0;" onclick="window.history.back()">Leave Room</button>
     <div id="chatHolder" class="chatHolder">
 
 
@@ -20,7 +21,7 @@
 
 
     <form>
-        <input required id="text-box" type="text" class="text-box" placeholder="Click to Chat" autocomplete="off"/> 
+        <input title="Click to Chat" maxlength="255" required id="text-box" type="text" class="text-box" placeholder="Click to Chat" autocomplete="off"/> 
         <img onclick="showEmoji()" draggable="false" width="25px" height="25px" id="emojiIMG" class="emojiIMG" src="./img/gui/emoji.png">
         <img onclick="showGif()" draggable="false" width="25px" height="25px" id="gifIMG" class="gifIMG" src="./img/gui/gif.png">
         <!--<div class="other"></div>-->
@@ -118,28 +119,28 @@
     <div class="gifMenu hidden">
         <table class="gifTable">
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/amused.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/awkward-bye.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="amused" src="./img/gifs/amused.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="awkward-bye" src="./img/gifs/awkward-bye.webp" width="80px" height="80px"></td>
             </tr>
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/congrats.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/dance.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="congrats" src="./img/gifs/congrats.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="dance" src="./img/gifs/dance.webp" width="80px" height="80px"></td>
             </tr>
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/good-luck.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/high-five.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="good-luck" src="./img/gifs/good-luck.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="high-five" src="./img/gifs/high-five.webp" width="80px" height="80px"></td>
             </tr>
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/hmm.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/laughing.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="hmm" src="./img/gifs/hmm.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="laughing"src="./img/gifs/laughing.webp" width="80px" height="80px"></td>
             </tr>
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/shocked.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/thumbs-up.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="shocked" src="./img/gifs/shocked.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="thumbs-up" src="./img/gifs/thumbs-up.webp" width="80px" height="80px"></td>
             </tr>
             <tr>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/what.webp" width="80px" height="80px"></td>
-                <td onclick="gifSelect(event, this.innerHTML)"><img src="./img/gifs/yuck.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="what" src="./img/gifs/what.webp" width="80px" height="80px"></td>
+                <td onclick="gifSelect(event, this.innerHTML)"><img title="yuck" src="./img/gifs/yuck.webp" width="80px" height="80px"></td>
             </tr>
         </table>
     </div>

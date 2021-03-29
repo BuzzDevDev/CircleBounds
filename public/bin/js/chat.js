@@ -1,9 +1,11 @@
 const socket = io();
 var theirMessages = [];
+var gifs = ["amused", "awkward-bye", "congrats", "dance", "good-luck", "high-five", "hmm", "laughing", "shocked", "thumbs-up", "what", "yuck"]
 var chatHolder = document.getElementById("chatHolder");
 var shownMessages = chatHolder.childElementCount;
 var msg = document.getElementById("text-box");
 var oncooldown = false;
+var users = [];
 
 socket.on('Console', msg => {
     console.log(msg);
@@ -13,7 +15,7 @@ socket.on("newMessage", msg => {
     message(msg);
 });
 
-function message(obj) {
+function message(obj) {  
     shownMessages++
     if(shownMessages > 4) {
         console.log("removed top message")
@@ -27,9 +29,10 @@ function message(obj) {
     var elem = document.createElement("div");
     elem.className = "chatMessage";
     elem.id = "chatMessage";
-    // bot message
+
+    // check if it is a bot message or not
     if(obj.hasOwnProperty("type")) {
-        // sounds * DOESN'T WORK FOR test.html *
+        // bot message
         if(obj.type == "joined") {
             let audio = new Howl({
                 src: ["./sounds/connect.wav"],
@@ -47,6 +50,17 @@ function message(obj) {
         elem.innerHTML = `${obj.msg} has ${obj.type} World ${myRoom}!`
         elem.style.color = "#505f78"
     }else{
+        // main
+        // parse gifs
+        let gifElem;
+        gifs.forEach(gifName => {
+            if(obj.msg.includes(gifName)) {
+                // set element attr
+                gifElem = `<img title=${gifName} src="./img/gifs/${gifName}.webp" width="80px" height="80px">`;
+
+                obj.msg = obj.msg.replaceAll(gifName, gifElem);
+            };
+        });
         elem.innerHTML = `${obj.user}: ${obj.msg}`;
         let audio = new Howl({
             src: ["./sounds/message.wav"],
@@ -111,15 +125,22 @@ socket.on("botMessage", (obj) => {
 
 
 // set emojiIMG button to be at the same position as input msg
+
 setInterval(() => {
+
+    // focus
     if($(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "8%"
         document.getElementById("gifIMG").style.bottom = "8%"
     };
+
+    // is not focused
     if(!$(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "3%"
         document.getElementById("gifIMG").style.bottom = "3%"
     };
+
+    // is focused
     if($(msg).is(':hover') && !$(msg).is(":focus")) {
         document.getElementById("emojiIMG").style.bottom = "5%"
         document.getElementById("gifIMG").style.bottom = "5%"
