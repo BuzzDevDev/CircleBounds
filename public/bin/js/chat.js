@@ -126,3 +126,5 @@ setInterval(() => {
     };
 
 }, 100);
+
+io = undefined;

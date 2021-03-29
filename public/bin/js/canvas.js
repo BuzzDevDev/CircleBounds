@@ -207,3 +207,5 @@ function loop() {
     });
     myLoop = requestAnimationFrame(loop);
 };
+
+io = undefined;

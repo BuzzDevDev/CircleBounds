@@ -1,6 +1,6 @@
 {
   "name": "circlebounds",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Real time group chats with other people!",
   "main": "server.js",
   "scripts": {

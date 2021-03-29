@@ -59,7 +59,7 @@ html {
     width: 98.8%;
     border: solid 1px white;
     overflow: none;
-    transition-duration: 1s;
+    transition-duration: 0.35s;
 }
 
 .header {

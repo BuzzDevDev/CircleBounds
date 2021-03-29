@@ -14,3 +14,5 @@ function createRoom() {
     var room = `${x}-${y}`;
     socket.emit("createRoom", room);
 };
+
+io = undefined;
