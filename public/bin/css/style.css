@@ -180,7 +180,7 @@ canvas {
     bottom: 4%;
     right: 5%;
     transition-duration: 0.45s;
-    z-index: 3;
+    z-index: 50;
 }
 
 .gifIMG {
@@ -190,15 +190,7 @@ canvas {
     bottom: 4%;
     right: 10%;
     transition-duration: 0.45s;
-    z-index: 3;
-}
-
-img {
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    z-index: 50;
 }
 
 .other {

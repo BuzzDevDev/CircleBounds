@@ -51,3 +51,7 @@
 ### v1.2.1
 
 * Remove menu animations due to bug
+
+### v1.2.2
+
+* Readd menu animation and fixed bug
