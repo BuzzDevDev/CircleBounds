@@ -127,24 +127,24 @@ socket.on("botMessage", (obj) => {
 // set emojiIMG button to be at the same position as input msg
 
 setInterval(() => {
-    let menus = document.querySelectorAll(".menu");
+    //let menus = document.querySelectorAll(".menu");
 
     // focus
     if($(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "8%";
         document.getElementById("gifIMG").style.bottom = "8%";
-        menus.forEach(menu => {
-            menu.style.bottom = "12%";
-        });
+        //menus.forEach(menu => {
+        //    menu.style.bottom = "12%";
+        //});
     };
 
     // is not focused
     if(!$(msg).is(':focus')) {
         document.getElementById("emojiIMG").style.bottom = "3%";
         document.getElementById("gifIMG").style.bottom = "3%";
-        menus.forEach(menu => {
-            menu.style.bottom = "10%";
-        });
+        //menus.forEach(menu => {
+        //    menu.style.bottom = "10%";
+        //});
 
     };
 
@@ -152,9 +152,9 @@ setInterval(() => {
     if($(msg).is(':hover') && !$(msg).is(":focus")) {
         document.getElementById("emojiIMG").style.bottom = "5%";
         document.getElementById("gifIMG").style.bottom = "5%";
-        menus.forEach(menu => {
-            menu.style.bottom = "14%";
-        });
+        //menus.forEach(menu => {
+        //    menu.style.bottom = "14%";
+        //});
 
     };
 

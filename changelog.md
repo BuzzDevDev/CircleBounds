@@ -47,3 +47,7 @@
 
 * Gif must start and end with ":"
 * Menus now move with input animations
+
+### v1.2.1
+
+* Remove menu animations due to bug
