@@ -21,13 +21,13 @@ function gifSelect(e, gif) {
     // get gif img element
     var title = $(gif).attr("title");
     // add a whitespace at end of title
-    title += " ";
+    title += "";
 
     if (!e) var e = window.event;                // Get the window event
     e.cancelBubble = true;                       // IE Stop propagation
     if (e.stopPropagation) e.stopPropagation();  // Other Broswers
     if(oncooldown == false) {
-        msg.value += title;
+        msg.value += `:${title}:`;
     };
     
 };

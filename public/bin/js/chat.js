@@ -56,9 +56,9 @@ function message(obj) {
         gifs.forEach(gifName => {
             if(obj.msg.includes(gifName)) {
                 // set element attr
-                gifElem = `<img title=${gifName} src="./img/gifs/${gifName}.webp" width="80px" height="80px">`;
+                gifElem = `<img title=${gifName}  src="./img/gifs/${gifName}.webp" width="80px" height="80px">`;
 
-                obj.msg = obj.msg.replaceAll(gifName, gifElem);
+                obj.msg = obj.msg.replaceAll(`:${gifName}:`, gifElem);
             };
         });
         elem.innerHTML = `${obj.user}: ${obj.msg}`;
@@ -127,23 +127,35 @@ socket.on("botMessage", (obj) => {
 // set emojiIMG button to be at the same position as input msg
 
 setInterval(() => {
+    let menus = document.querySelectorAll(".menu");
 
     // focus
     if($(msg).is(':focus')) {
-        document.getElementById("emojiIMG").style.bottom = "8%"
-        document.getElementById("gifIMG").style.bottom = "8%"
+        document.getElementById("emojiIMG").style.bottom = "8%";
+        document.getElementById("gifIMG").style.bottom = "8%";
+        menus.forEach(menu => {
+            menu.style.bottom = "12%";
+        });
     };
 
     // is not focused
     if(!$(msg).is(':focus')) {
-        document.getElementById("emojiIMG").style.bottom = "3%"
-        document.getElementById("gifIMG").style.bottom = "3%"
+        document.getElementById("emojiIMG").style.bottom = "3%";
+        document.getElementById("gifIMG").style.bottom = "3%";
+        menus.forEach(menu => {
+            menu.style.bottom = "10%";
+        });
+
     };
 
-    // is focused
+    // hover
     if($(msg).is(':hover') && !$(msg).is(":focus")) {
-        document.getElementById("emojiIMG").style.bottom = "5%"
-        document.getElementById("gifIMG").style.bottom = "5%"
+        document.getElementById("emojiIMG").style.bottom = "5%";
+        document.getElementById("gifIMG").style.bottom = "5%";
+        menus.forEach(menu => {
+            menu.style.bottom = "14%";
+        });
+
     };
 
 }, 100);

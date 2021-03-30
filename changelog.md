@@ -42,3 +42,8 @@
 
 * * Added user management array
 * * Added duplicate string util
+
+### v1.2.0
+
+* Gif must start and end with ":"
+* Menus now move with input animations

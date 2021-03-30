@@ -96,10 +96,7 @@ canvas {
 }
 
 .menu {
-    padding-top: 15%;
-    text-align: center;
-    width: 100%;
-    visibility: hidden;
+    transition: 0.45s;
 }
 
 .text-box {
@@ -315,6 +312,7 @@ th, td {
     outline: none;
     box-shadow: none;
     user-select: none;
+    -webkit-user-select: none;
 }
 
 .touch:active {
