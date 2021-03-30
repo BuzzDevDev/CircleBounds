@@ -6,7 +6,7 @@
 | ------- | ------------------ |
 | v1.0.0  |  :x:               |
 | v1.0.1  |  :x:               |
-| v1.0.2  | :white_check_mark: |
+| v1.x.x  | :white_check_mark: |
 
 
 ## Reporting a Vulnerability
